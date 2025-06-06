@@ -1,6 +1,13 @@
-import Image from "next/image";
+"use client";
 
-function MainContent() {
+import Image from "next/image";
+import { useEffect } from "react";
+
+function MainContent({data}) {
+    useEffect(()=>{
+        console.log(data);
+
+    })
     return (  
         <div className="w-[60%] flex items-center justify-center flex-col my-4 mx-auto border-1 p-5 py-15">
             <div className="w-[80%]">
@@ -9,7 +16,8 @@ function MainContent() {
 
             <p>Mar 1,2023 . 2 min read</p>
             <p className="text-3xl font-bold">
-                App & Down: 5 Apps to Help You Meditate
+                
+              {data?data.heading: "Loading..."}
             </p>
             <p>Create a blog post subtitle that summarizes your post in a few short, punchy sentences and entices your audience to continue reading.</p>
             </div>
@@ -22,7 +30,28 @@ function MainContent() {
 
             </p>
             </div>
+            
             <div>
+            {
+                data && data.p1 ? 
+                data.p1.map((item,idx)=>{
+
+               return     <div key={idx}>
+                <p className="text-xl font-bold my-4">
+                {item.heading}
+                </p>
+                <em>
+                    “Do you have a design in mind for your blog? Whether you prefer a trendy postcard look or you’re going for a more editorial style blog - there’s a stunning layout for everyone.” 
+                </em>
+                <p>
+                    {item.description}
+                    {/* {data[0].p1.description} */}
+                    </p>
+            </div>
+                }
+            ):<p>Loading...</p>
+            }
+            {/* <div>
                 <p className="text-xl font-bold my-4">
                     Design with Ease
                 </p>
@@ -43,17 +72,7 @@ function MainContent() {
                 <p>
                     Every layout comes with the latest social features built in. Readers will be able to easily share posts on social networks like Facebook and Twitter, view how many people have liked a post, made comments and more. With Wix, building your online community has never been easier.   
                 </p>
-            </div>
-            <div>
-                <p className="text-xl font-bold my-4">
-                    Design with Ease
-                </p>
-                <em>
-                    “Do you have a design in mind for your blog? Whether you prefer a trendy postcard look or you’re going for a more editorial style blog - there’s a stunning layout for everyone.” 
-                </em>
-                <p>
-                    Every layout comes with the latest social features built in. Readers will be able to easily share posts on social networks like Facebook and Twitter, view how many people have liked a post, made comments and more. With Wix, building your online community has never been easier.   
-                </p>
+            </div> */}
             </div>
             <hr className="mt-10"/> 
             <div className="flex gap-4 my-3">
